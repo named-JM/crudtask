@@ -33,8 +33,26 @@ $result = $conn->query($sql);
         });
     </script>
 </head>
+<style>
+.logout-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.logout-btn:hover {
+    background-color: #d32f2f;
+}
+</style>
+
 <body>
     <h1>Successfully Data Datatable Dashboard</h1>
+    <a href="logout.php" class="logout-btn">Logout</a>
+
     <table id="example" class="display" style="width:100%">
         <thead>
             <tr>

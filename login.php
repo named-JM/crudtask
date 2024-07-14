@@ -1,6 +1,7 @@
 <?php
 include "database_conn.php";
 session_start(); // Start the session to use $_SESSION
+session_regenerate_id(true); // Prevent session fixation attacks
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -16,6 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verifying password
         if (password_verify($password, $hashed_password)) {
+            // Set session variables
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['fullname'];
+
             header("Location: dashboard.php");
             exit();
         } else {
@@ -28,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
