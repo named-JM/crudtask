@@ -34,6 +34,7 @@ $result = $conn->query($sql);
                 <th>Gender</th>
                 <th>Email</th>
                 <th>Picture</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -62,6 +63,7 @@ $result = $conn->query($sql);
                 <th>Gender</th>
                 <th>Email</th>
                 <th>Picture</th>
+                <th></th>
             </tr>
         </tfoot>
     </table>

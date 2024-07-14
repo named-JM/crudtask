@@ -1,27 +1,33 @@
 <?php
-    include "database_conn.php";
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $fullname = $_POST['fullname'];
-        $email = $_POST['email'];
-        $gender = $_POST['gender'];
-        $age = $_POST['age'];
-        $picture = $_POST['picture'];
-        $password = $_POST['password'];
+include "database_conn.php";
 
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $fullname = $_POST['fullname'];
+    $email = $_POST['email'];
+    $gender = $_POST['gender'];
+    $age = $_POST['age'];
+    $password = $_POST['password'];
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO `users`(`fullname`, `email`, `gender`, `age`, `picture`, `password`) VALUES ('$fullname','$email','$gender','$age','$picture','$hashed_password')";
+    // Handle file upload
+    $picture = $_FILES['picture'];
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($picture["name"]);
 
-        if($conn->query($sql) ===TRUE){
+    // Move uploaded file to the target directory
+    if (move_uploaded_file($picture["tmp_name"], $target_file)) {
+        $sql = "INSERT INTO `users`(`fullname`, `email`, `gender`, `age`, `picture`, `password`) VALUES ('$fullname', '$email', '$gender', '$age', '$target_file', '$hashed_password')";
+
+        if ($conn->query($sql) === TRUE) {
             header("Location: login.php");
             exit();
-        }
-        else{
+        } else {
             echo "ERROR: " . $sql . $conn->error;
         }
+    } else {
+        echo "Failed to upload the picture.";
     }
-
-
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,15 +37,15 @@
     <title>Registration Page</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 flex items-center justify-end min-h-screen mr-20">
+<!-- <body class="bg-gray-100 flex items-center justify-end min-h-screen mr-20"> -->
+<body class="bg-gray-100 ">
     <div class="w-1/2">
         <h2 class="text-3xl font-bold mb-4">Welcome to the CRUD Side!</h2>
         <p class="text-xl mb-8">Join us now</p>
     </div>
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
-        
         <h2 class="text-2xl font-bold mb-6 text-center">Registration Form</h2>
-        <form action="register.php" method="POST">
+        <form action="register.php" method="POST" enctype="multipart/form-data">
             <!-- FULL NAME -->
             <div class="mb-4">
                 <label class="block text-gray-700 mb-2" for="name">Full Name</label>
