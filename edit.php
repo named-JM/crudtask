@@ -93,9 +93,9 @@ $conn->close();
             <div class="mb-5 flex items-center">
                 <label class="mr-4 text-gray-700" for="gender">Gender:</label>
                 <div class="flex items-center">
-                    <input class="mr-2" type="radio" id="male" name="gender" value="male" <?php if($user['gender'] == 'male') echo 'selected'; ?>required>
+                    <input class="mr-2" type="radio" id="male" name="gender" value="Male" <?php if($user['gender'] == 'Male') echo 'selected'; ?>required>
                     <label class="mr-4" for="male">Male</label>
-                    <input class="mr-2" type="radio" id="female" name="gender" value="female"  <?php if($user['gender'] == 'female') echo 'selected'; ?> required>
+                    <input class="mr-2" type="radio" id="female" name="gender" value="Female"  <?php if($user['gender'] == 'Female') echo 'selected'; ?> required>
                     <label class="mr-4" for="female">Female</label>
                     <input class="mr-2" type="radio" id="other" name="gender" value="other" required>
                     <label for="other">Other</label>

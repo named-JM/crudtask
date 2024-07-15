@@ -17,10 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verifying password
         if (password_verify($password, $hashed_password)) {
-            // Set session variables
+            // Set session variables for dashboard
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['fullname'];
-
+            $_SESSION['user_picture'] = $user['picture'];
             header("Location: dashboard.php");
             exit();
         } else {
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php
             if (isset($_SESSION['error'])) {
                 echo '<div class="mb-4 text-red-500">' . $_SESSION['error'] . '</div>';
-                unset($_SESSION['error']); // Clear the error after displaying it
+                unset($_SESSION['error']);
             }
             ?>
             <div class="mb-4">
