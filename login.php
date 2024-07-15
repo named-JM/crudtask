@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label class="block text-gray-700 mb-2" for="password">Password</label>
                 <input class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500" type="password" name="password" id="password" required>
             </div>
-            <button class="w-full bg-gray-200 text-black py-2 rounded-full hover:bg-gray-400 transition duration-300" type="submit">Login</button>
+            <button class="w-full bg-yellow-300 text-black py-2 rounded-full hover:bg-yellow-500 transition duration-300" type="submit">Login</button>
         </form>
         <p class="mt-4 text-center">Don't have an account? <a class="text-indigo-500 hover:underline" href="register.php">Register</a></p>
     </div>

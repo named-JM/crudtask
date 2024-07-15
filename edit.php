@@ -89,19 +89,17 @@ $conn->close();
                 <label class="block text-gray-700 mb-2" for="age">Age</label>
                 <input class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500" type="number" name="age" id="age" value="<?php echo htmlspecialchars($user['age']); ?>" required>
             </div>
-            <!-- GENDER -->
             <div class="mb-5 flex items-center">
                 <label class="mr-4 text-gray-700" for="gender">Gender:</label>
                 <div class="flex items-center">
-                    <input class="mr-2" type="radio" id="male" name="gender" value="Male" <?php if($user['gender'] == 'Male') echo 'selected'; ?>required>
+                    <input class="mr-2" type="radio" id="male" name="gender" value="Male" <?php if($user['gender'] == 'Male') echo 'checked'; ?> required>
                     <label class="mr-4" for="male">Male</label>
-                    <input class="mr-2" type="radio" id="female" name="gender" value="Female"  <?php if($user['gender'] == 'Female') echo 'selected'; ?> required>
+                    <input class="mr-2" type="radio" id="female" name="gender" value="Female" <?php if($user['gender'] == 'Female') echo 'checked'; ?> required>
                     <label class="mr-4" for="female">Female</label>
-                    <input class="mr-2" type="radio" id="other" name="gender" value="other" required>
+                    <input class="mr-2" type="radio" id="other" name="gender" value="Other" <?php if($user['gender'] == 'Other') echo 'checked'; ?> required>
                     <label for="other">Other</label>
                 </div>
             </div>
-            
             <div class="mb-4">
                 <label class="block text-gray-700 mb-2" for="email">Email</label>
                 <input class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500" type="email" name="email" id="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
@@ -109,7 +107,6 @@ $conn->close();
             <div class="mb-4">
                 <label class="block text-gray-700 mb-2" for="picture">Picture</label>
                 <input class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500" type="file" name="picture" id="picture">
-
             </div>
             <button class="w-full bg-indigo-500 text-white py-2 rounded-full hover:bg-indigo-700 transition duration-300" type="submit">Update</button>
         </form>

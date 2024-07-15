@@ -59,9 +59,9 @@ $result = $conn->query($sql);
     <div class="flex items-center mb-8">
         <img src="<?php echo htmlspecialchars($_SESSION['user_picture']); ?>" alt="User Picture" class="w-12 h-12 rounded-full object-cover mr-4">
         <h1 class="text-2xl font-bold">Hi, <?php echo htmlspecialchars($_SESSION['user_name']); ?>! Welcome!</h1>
-        <a href="logout.php" class="logout-btn mb-8">Logout</a>
 
     </div>
+    <a href="logout.php" class="logout-btn mb-8">Logout</a>
     
     <table id="example" class="display w-full bg-white rounded-lg shadow-lg">
         <thead>
@@ -87,7 +87,8 @@ $result = $conn->query($sql);
                     echo "<td><img src='" . htmlspecialchars($row['picture']) . "' alt='User Picture' class='w-12 h-12 rounded-full object-cover'></td>";
                     echo "<td class='flex space-x-2 text-center'>";
                     echo "<a href='edit.php?id=" . $row['id'] . "' class='text-center text-blue-500 hover:text-blue-700  text-xl'><i class='fa fa-edit'></i></a>";
-                    echo "<a href='delete.php?id=" . $row['id'] . "' class='text-center text-red-500 hover:text-red-700 text-xl' ><i class='fa fa-trash'></i></a>";
+                    echo "<a href='forgot_password.php?id=" . $row['id'] . "' class='text-center text-red-500 hover:text-red-700 text-xl' ><i class='fa fa-trash'></i></a>";
+                    
                     echo "</td>";
                     echo "</tr>";
                 }

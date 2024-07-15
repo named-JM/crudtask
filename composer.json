@@ -1,0 +1,14 @@
+{
+    "name": "echel/crud",
+    "description": "A simple crud application",
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "authors": [
+        {
+            "name": "Joanna",
+            "email": "joannacaguco@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
