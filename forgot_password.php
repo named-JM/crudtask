@@ -21,14 +21,14 @@ $smtpConfigs = array(
     array(
         'host' => 'smtp.gmail.com',
         'username' => 'joannacaguco@gmail.com',
-        'password' => 'gffb idls hmhx kfex',
+        'password' => '************',
         'port' => 587,
         'encryption' => PHPMailer::ENCRYPTION_STARTTLS
     ),
     array(
         'host' => 'smtp.gmail.com',
         'username' => 'joannacaguco@gmail.com',
-        'password' => 'gffb idls hmhx kfex',
+        'password' => '***************',
         'port' => 587,
         'encryption' => PHPMailer::ENCRYPTION_STARTTLS
     ),
