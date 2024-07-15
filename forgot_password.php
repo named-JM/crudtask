@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "database_conn.php";
-require './vendor/autoload.php'; // Include Composer's autoload
+require './vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -20,15 +20,15 @@ function sanitize_input($data) {
 $smtpConfigs = array(
     array(
         'host' => 'smtp.gmail.com',
-        'username' => 'joannacaguco@gmail.com',
-        'password' => 'gffb idls hmhx kfex',
+        'username' => 'valladorjennylyn@gmail.com',
+        'password' => 'cuys pgyq onlu ctvm',
         'port' => 587,
         'encryption' => PHPMailer::ENCRYPTION_STARTTLS
     ),
     array(
         'host' => 'smtp.gmail.com',
-        'username' => 'joannacaguco@gmail.com',
-        'password' => 'gffb idls hmhx kfex',
+        'username' => 'valladorjennylyn@gmail.com',
+        'password' => 'cuys pgyq onlu ctvm',
         'port' => 587,
         'encryption' => PHPMailer::ENCRYPTION_STARTTLS
     ),
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->Debugoutput = 'html'; // Print debug output as HTML
 
                 //Recipients
-                $mail->setFrom($smtpConfig['username'], 'Mailer'); // Use the sender's email here
+                $mail->setFrom($smtpConfig['username'], 'Primo'); // Use the sender's email here
                 $mail->addAddress($email);
 
                 // Content
@@ -109,4 +109,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->close();
     }
 }
-?> 
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-f-100 flex items-center justify-center h-screen">
+    <div class="bg-purple-400 p-8 rounded-lg shadow-lg w-full max-w-sm">
+        <h2 class="text-2xl text-center font-bold mb-6 text-gray-800">Forgot Password</h2>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+                <input class="border rounded w-full py-2 px-3 text-gray-700 mb-2" id="email" name="email" type="email" placeholder="Email" value="<?php echo htmlspecialchars($email); ?>" required>
+                <span class="text-sm text-red-500 mb-4 block"><?php echo $emailErr; ?></span>
+                <span class="text-sm text-green-500 mb-4 block"><?php echo $otpSent; ?></span>
+            </div>
+            <div class="flex justify-center">
+                <button class="bg-purple-700 text-white py-2 px-4 rounded hover:bg-purple-600 focus:outline-none" type="submit">Send OTP</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
