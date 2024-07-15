@@ -40,19 +40,18 @@ if (isset($_GET['id'])) {
 
         // Send OTP email
         $mail = new PHPMailer(true); // Enable exceptions
-
         try {
             //Server settings
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'valladorjennylyn@gmail.com';
-            $mail->Password   = 'cuys pgyq onlu ctvm';
+            $mail->Username   = 'noreplyfakeprimeo@gmail.com';
+            $mail->Password   = 'ewrk nbpg kapt iwsm';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
 
             // Recipients
-            $mail->setFrom('valladorjennylyn@gmail.com', 'Primo'); // Use your sender's email here
+            $mail->setFrom('noreplyfakeprimeo@gmail.com', 'Fake Primo'); // Use your sender's email here
             $mail->addAddress($email);
 
             // Content

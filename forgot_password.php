@@ -20,15 +20,15 @@ function sanitize_input($data) {
 $smtpConfigs = array(
     array(
         'host' => 'smtp.gmail.com',
-        'username' => 'valladorjennylyn@gmail.com',
-        'password' => 'cuys pgyq onlu ctvm',
+        'username' => 'noreplyfakeprimeo@gmail.com',
+        'password' => 'ewrk nbpg kapt iwsm',
         'port' => 587,
         'encryption' => PHPMailer::ENCRYPTION_STARTTLS
     ),
     array(
         'host' => 'smtp.gmail.com',
-        'username' => 'valladorjennylyn@gmail.com',
-        'password' => 'cuys pgyq onlu ctvm',
+        'username' => 'noreplyfakeprimeo@gmail.com',
+        'password' => 'ewrk nbpg kapt iwsm',
         'port' => 587,
         'encryption' => PHPMailer::ENCRYPTION_STARTTLS
     ),
