@@ -45,13 +45,8 @@ if (isset($_GET['id'])) {
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-<<<<<<< HEAD
             $mail->Username   = 'noreplyfakeprimeo@gmail.com';
             $mail->Password   = 'ewrk nbpg kapt iwsm';
-=======
-            $mail->Username   = '*********************';
-            $mail->Password   = '*********************';
->>>>>>> 0d4276f03fee6c772c9510dd783409885698027f
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
 
