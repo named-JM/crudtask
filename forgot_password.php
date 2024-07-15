@@ -21,14 +21,14 @@ $smtpConfigs = array(
     array(
         'host' => 'smtp.gmail.com',
         'username' => 'noreplyfakeprimeo@gmail.com',
-        'password' => 'ewrk nbpg kapt iwsm',
+        'password' => 'nedt ydzx skju oxmf',
         'port' => 587,
         'encryption' => PHPMailer::ENCRYPTION_STARTTLS
     ),
     array(
         'host' => 'smtp.gmail.com',
         'username' => 'noreplyfakeprimeo@gmail.com',
-        'password' => 'ewrk nbpg kapt iwsm',
+        'password' => 'nedt ydzx skju oxmf',
         'port' => 587,
         'encryption' => PHPMailer::ENCRYPTION_STARTTLS
     ),
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->Debugoutput = 'html'; // Print debug output as HTML
 
                 //Recipients
-                $mail->setFrom($smtpConfig['username'], 'Primo'); // Use the sender's email here
+                $mail->setFrom($smtpConfig['username'], 'Fake'); // Use the sender's email here
                 $mail->addAddress($email);
 
                 // Content
