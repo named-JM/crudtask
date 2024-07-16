@@ -42,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
@@ -49,7 +50,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="login.php" method="POST" autocomplete="off">
             <?php
             if (isset($_SESSION['error'])) {
-                echo '<div class="mb-4 text-red-500">' . $_SESSION['error'] . '</div>';
+                echo '<script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        Swal.fire({
+                            title: "Error",
+                            text: "' . $_SESSION['error'] . '",
+                            icon: "error"
+                        });
+                    });
+                </script>';
                 unset($_SESSION['error']);
             }
             ?>
