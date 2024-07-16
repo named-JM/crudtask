@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         .input-with-button button {
             position: absolute;
-            right: 0; /* Position button within input */
+            right: 0.3rem; /* Position button within input */
             top: 45%;
             transform: translateY(-50%);
             padding: 0.5rem 0.5rem;
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="otp">Please check your email for OTP Code</label>
                 <div class="input-with-button">
-                <input class="border rounded w-full py-2 px-3 text-gray-700 mb-2" id="otp" name="otp" type="text" placeholder="Enter OTP" value="<?php echo htmlspecialchars($otp); ?>" required>
+                <input class="border rounded w-full py-5 px-3 text-gray-700 mb-2" id="otp" name="otp" type="text" placeholder="Enter OTP" value="<?php echo htmlspecialchars($otp); ?>" required>
                 <button class="bg-purple-700 text-white py-2 px-4 rounded hover:bg-purple-600 focus:outline-none" type="submit">Verify</button>
                 </div>
                 
