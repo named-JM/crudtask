@@ -63,8 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Reset Password</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-f-100 flex items-center justify-center h-screen">
-    <div class="bg-purple-400 p-8 rounded-lg shadow-lg w-full max-w-sm">
+<body class="bg-f-200 flex items-center justify-center h-screen">
+    <div class="w-full max-w-sm">
         <h2 class="text-2xl text-center font-bold mb-6 text-gray-800">Reset Password</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="mb-6">
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <span class="text-sm text-red-500 mb-4 block"><?php echo $confirmPasswordErr; ?></span>
             </div>
             <div class="flex justify-center">
-                <button class="bg-purple-700 text-white py-2 px-4 rounded hover:bg-purple-600 focus:outline-none" type="submit">Reset Password</button>
+                <button class="bg-yellow-400 text-white py-2 px-4 rounded hover:bg-yellow-500 focus:outline-none" type="submit">Reset Password</button>
             </div>
         </form>
     </div>

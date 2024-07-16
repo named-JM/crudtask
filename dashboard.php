@@ -31,26 +31,27 @@ $result = $conn->query($sql);
 
     <!-- CSS MODAL POP UP WINDOW STYLE-->
     <style>
-    .modal {
-        background-color: rgba(0,0,0,0.5);
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+   .modal {
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
 
-    .modal-content {
-        padding: 20px;
-        border-radius: 8px;
-        max-width: 600px;
-        width: 100%;
-    }
+.modal-content {
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    position: fixed;
+}
+
     /* LOGOUT BUTTON STYLE */
     .logout-btn {
     display: inline-block;
@@ -74,45 +75,48 @@ $result = $conn->query($sql);
 
     <!-- JavaScript for modal functionality -->
 <script>
-    $(document).ready(function(){
-        $('#example').DataTable();
+$(document).ready(function(){
+    // DataTable initialization
+    $('#example').DataTable();
 
-        // Function to show modal and load edit form
-        $('.edit-btn').click(function(e) {
-            e.preventDefault();
-            var editUrl = $(this).attr('href');
+    // Function to show modal and load edit form
+    $('.edit-btn').click(function(e) {
+        e.preventDefault();
+        var editUrl = $(this).attr('href');
 
-            // Ajax call to fetch edit form
-            $.ajax({
-                url: editUrl,
-                type: 'GET',
-                success: function(response) {
-                    $('.modal-content').html(response);
-                    $('.modal').show(); // Show modal
-                    $('body').addClass('modal-open'); // Add class to body
-                }
-            });
-        });
-
-        // Close modal when clicking outside modal content
-        $(document).on('click', function(event) {
-            if ($(event.target).hasClass('modal')) {
-                $('.modal').hide(); // Hide modal
-                $('body').removeClass('modal-open'); // Remove class from body
+        // Ajax call to fetch edit form
+        $.ajax({
+            url: editUrl,
+            type: 'GET',
+            success: function(response) {
+                $('.modal-content').html(response);
+                $('.modal').css('display', 'flex'); // Show modal
+                $('body').addClass('modal-open'); // Add class to body
             }
         });
-
-        // Prevent modal from closing when clicking inside modal content
-        $('.modal-content').click(function(event){
-            event.stopPropagation();
-        });
-
-        // Close modal when clicking the close button
-        $('.close-modal').click(function(){
-            $('.modal').hide(); // Hide modal
-            $('body').removeClass('modal-open'); // Remove class from body
-        });
     });
+
+    // Close modal when clicking outside modal content
+    $(document).on('click', function(event) {
+        if ($(event.target).hasClass('modal')) {
+            $('.modal').css('display', 'none'); // Hide modal
+            $('body').removeClass('modal-open'); // Remove class from body
+        }
+    });
+
+    // Prevent modal from closing when clicking inside modal content
+    $('.modal-content').click(function(event){
+        event.stopPropagation();
+    });
+
+    // Close modal when clicking the close button
+    $('.close-modal').click(function(){
+        $('.modal').css('display', 'none'); // Hide modal
+        $('body').removeClass('modal-open'); // Remove class from body
+    });
+});
+
+
 </script>
 
 </head>
@@ -126,7 +130,7 @@ $result = $conn->query($sql);
 
     <!-- Modal for edit form -->
     <div class="modal">
-        <div class="modal-content">
+        <div class="modal-content flex items-center justify-center align-items">
             <!-- Edit form will be loaded here -->
         </div>
     </div>

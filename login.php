@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Fetching hashed password
-    $query = "SELECT * FROM `users` WHERE email='$email'";
+    $query = "SELECT * FROM `users` WHERE email='$email' AND is_deleted = 0"; // Add is_deleted condition
     $result = $conn->query($query);
 
     if ($result && $result->num_rows == 1) {
@@ -27,12 +27,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['error'] = "Password is incorrect.";
         }
     } else {
-        $_SESSION['error'] = "User not found.";
+        $_SESSION['error'] = "User not found or account is deleted.";
     }
 
     $conn->close();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </style>
 </head>
-<body class="bg-gray-300 flex items-center justify-center h-screen">
+<body class="bg-gray-200 flex items-center justify-center h-screen">
     <div class="w-full max-w-sm">
         <h2 class="text-1xl text-left font-bold mb-6 text-gray-800">You are <span class="text-red-500">deleting</span> an user.<br>Please check your email for the confirmation</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
