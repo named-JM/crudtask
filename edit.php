@@ -71,7 +71,7 @@ $conn->close();
     <title>Edit User</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body class="bg-gray-300 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 class="text-2xl font-bold mb-6 text-center">Edit User</h2>
         <form action="edit.php?id=<?php echo $id; ?>" method="POST" enctype="multipart/form-data">
@@ -108,7 +108,7 @@ $conn->close();
                 <label class="block text-gray-700 mb-2" for="picture">Picture</label>
                 <input class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500" type="file" name="picture" id="picture">
             </div>
-            <button class="w-full bg-indigo-500 text-white py-2 rounded-full hover:bg-indigo-700 transition duration-300" type="submit">Update</button>
+            <button class="w-full bg-yellow-300 text-black py-2 rounded-full hover:bg-yellow-500 transition duration-300" type="submit">Update</button>
         </form>
     </div>
 </body>

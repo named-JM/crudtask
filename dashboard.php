@@ -29,14 +29,30 @@ $result = $conn->query($sql);
     <!-- Tailwind CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-    <script>
-        $(document).ready(function(){
-            $('#example').DataTable();
-        });
-    </script>
-</head>
-<style>
-.logout-btn {
+    <!-- CSS MODAL POP UP WINDOW STYLE-->
+    <style>
+    .modal {
+        background-color: rgba(0,0,0,0.5);
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 600px;
+        width: 100%;
+    }
+    /* LOGOUT BUTTON STYLE */
+    .logout-btn {
     display: inline-block;
     padding: 10px 20px;
     margin-bottom: 20px;
@@ -55,13 +71,65 @@ $result = $conn->query($sql);
 }
 </style>
 
+
+    <!-- JavaScript for modal functionality -->
+<script>
+    $(document).ready(function(){
+        $('#example').DataTable();
+
+        // Function to show modal and load edit form
+        $('.edit-btn').click(function(e) {
+            e.preventDefault();
+            var editUrl = $(this).attr('href');
+
+            // Ajax call to fetch edit form
+            $.ajax({
+                url: editUrl,
+                type: 'GET',
+                success: function(response) {
+                    $('.modal-content').html(response);
+                    $('.modal').show(); // Show modal
+                    $('body').addClass('modal-open'); // Add class to body
+                }
+            });
+        });
+
+        // Close modal when clicking outside modal content
+        $(document).on('click', function(event) {
+            if ($(event.target).hasClass('modal')) {
+                $('.modal').hide(); // Hide modal
+                $('body').removeClass('modal-open'); // Remove class from body
+            }
+        });
+
+        // Prevent modal from closing when clicking inside modal content
+        $('.modal-content').click(function(event){
+            event.stopPropagation();
+        });
+
+        // Close modal when clicking the close button
+        $('.close-modal').click(function(){
+            $('.modal').hide(); // Hide modal
+            $('body').removeClass('modal-open'); // Remove class from body
+        });
+    });
+</script>
+
+</head>
+
 <body class="bg-gray-100 p-8">
     <div class="flex items-center mb-8">
         <img src="<?php echo htmlspecialchars($_SESSION['user_picture']); ?>" alt="User Picture" class="w-12 h-12 rounded-full object-cover mr-4">
         <h1 class="text-2xl font-bold">Hi, <?php echo htmlspecialchars($_SESSION['user_name']); ?>! Welcome!</h1>
-
     </div>
     <a href="logout.php" class="logout-btn mb-8">Logout</a>
+
+    <!-- Modal for edit form -->
+    <div class="modal">
+        <div class="modal-content">
+            <!-- Edit form will be loaded here -->
+        </div>
+    </div>
     
     <table id="example" class="display w-full bg-white rounded-lg shadow-lg">
         <thead>
@@ -86,11 +154,8 @@ $result = $conn->query($sql);
                     echo "<td>" . htmlspecialchars($row['email']) . "</td>";
                     echo "<td><img src='" . htmlspecialchars($row['picture']) . "' alt='User Picture' class='w-12 h-12 rounded-full object-cover'></td>";
                     echo "<td class='flex space-x-2 text-center'>";
-                    echo "<a href='edit.php?id=" . $row['id'] . "' class='text-center text-blue-500 hover:text-blue-700  text-xl'><i class='fa fa-edit'></i></a>";
-                    // Inside the while loop where user data is displayed
+                    echo "<a href='edit.php?id=" . $row['id'] . "' class='text-center text-blue-500 hover:text-blue-700 text-xl edit-btn'><i class='fa fa-edit'></i></a>";
                     echo "<a href='send_delete_otp.php?id=" . $row['id'] . "' class='text-center text-red-500 hover:text-red-700 text-xl'><i class='fa fa-trash'></i></a>";
-
-                    
                     echo "</td>";
                     echo "</tr>";
                 }
