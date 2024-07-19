@@ -19,6 +19,50 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
+    <style>
+         body {
+            display: none; /* Hide content until styles are loaded */
+         } 
+        /* <!-- CSS MODAL POP UP WINDOW STYLE--> */
+
+        .modal {
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            position: fixed;
+        }
+        .logout-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            background-color: #f44336;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .logout-btn:hover {
+            background-color: #d32f2f;
+        }
+        .dataTables_filter {
+            margin-bottom: 20px;
+        }
+    </style>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- datatable style cdn -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <!-- jquery cdn  -->
@@ -26,57 +70,11 @@ $result = $conn->query($sql);
     <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <!-- font awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Tailwind CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-    <!-- CSS MODAL POP UP WINDOW STYLE-->
-    <style>
-   .modal {
-    background-color: rgba(0,0,0,0.5);
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 600px;
-    width: 100%;
-    position: fixed;
-}
-
-    /* LOGOUT BUTTON STYLE */
-    .logout-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    background-color: #f44336;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-}
-.logout-btn:hover {
-    background-color: #d32f2f;
-}
-
-.dataTables_filter {
-    margin-bottom: 20px;
-}
-</style>
-
-
-    <!-- JavaScript for modal functionality -->
-<script>
+    <!-- SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
 $(document).ready(function(){
-    // DataTable initialization
+    $('body').show(); // Show content after styles are loaded
     $('#example').DataTable();
 
     // Function to show modal and load edit form
@@ -92,6 +90,26 @@ $(document).ready(function(){
                 $('.modal-content').html(response);
                 $('.modal').css('display', 'flex'); // Show modal
                 $('body').addClass('modal-open'); // Add class to body
+            }
+        });
+    });
+
+    // Function to confirm delete action with SweetAlert
+    $('.delete-btn').click(function(e) {
+        e.preventDefault();
+        var deleteUrl = $(this).attr('href');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = deleteUrl; // Redirect to delete URL
             }
         });
     });
@@ -114,10 +132,22 @@ $(document).ready(function(){
         $('.modal').css('display', 'none'); // Hide modal
         $('body').removeClass('modal-open'); // Remove class from body
     });
+
+    // Show alert messages
+    <?php
+    if (isset($_SESSION['message'])) {
+        echo 'Swal.fire("Success", "' . $_SESSION['message'] . '", "success");';
+        unset($_SESSION['message']);
+    }
+    if (isset($_SESSION['error'])) {
+        echo 'Swal.fire("Error", "' . $_SESSION['error'] . '", "error");';
+        unset($_SESSION['error']);
+    }
+    ?>
 });
-
-
 </script>
+
+
 
 </head>
 
@@ -159,7 +189,7 @@ $(document).ready(function(){
                     echo "<td><img src='" . htmlspecialchars($row['picture']) . "' alt='User Picture' class='w-12 h-12 rounded-full object-cover'></td>";
                     echo "<td class='flex space-x-2 text-center'>";
                     echo "<a href='edit.php?id=" . $row['id'] . "' class='text-center text-blue-500 hover:text-blue-700 text-xl edit-btn'><i class='fa fa-edit'></i></a>";
-                    echo "<a href='send_delete_otp.php?id=" . $row['id'] . "' class='text-center text-red-500 hover:text-red-700 text-xl'><i class='fa fa-trash'></i></a>";
+                    echo "<a href='send_delete_otp.php?id=" . $row['id'] . "' class='text-center text-red-500 hover:text-red-700 delete-btn text-xl'><i class='fa fa-trash'></i></a>";
                     echo "</td>";
                     echo "</tr>";
                 }
@@ -180,5 +210,6 @@ $(document).ready(function(){
             </tr>
         </tfoot>
     </table>
+    
 </body>
 </html>

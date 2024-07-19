@@ -58,7 +58,26 @@ if (isset($_GET['id'])) {
             // Content
             $mail->isHTML(true);
             $mail->Subject = 'Your OTP for Account Deletion';
-            $mail->Body    = "Your OTP for account deletion is: $otp";
+
+            // Styled email body
+            $mail->Body = "
+                <html>
+                <body style='font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;'>
+                    <div style='max-width: 1000px; margin: 0 auto; background-color: #ffffff; border: 1px solid #dddddd; border-radius: 5px;'>
+                        <div style='background-color: #FFBF00; padding: 10px; text-align: center; color: #ffffff; border-top-left-radius: 5px; border-top-right-radius: 5px;'>
+                            <h1>Verification Code for Account Deletion</h1>
+                        </div>
+                        <div style='padding: 20px; text-align: center;'>
+                            <img src='https://i.pinimg.com/736x/56/8a/f2/568af2bf861bcebacb310dc24840b4e3.jpg' alt='Logo' style='margin-bottom: 20px; width: 50px; height:50px;'>
+                            <p style='font-size: 16px; color: #333333;'>You are <span style='color: red;'>deleting</span> an account. If this is not you, please disregard this message.</p>
+                            <p style='font-size: 18px; color: #333333;'>Your Verification Code for account deletion is:</p>
+                            <h2 style='font-size: 36px; color: #FFBF00;'>$otp</h2>
+                            <p style='font-size: 16px; color: #333333;'>Please enter this OTP to confirm your account deletion.</p>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            ";
 
             $mail->send();
             $otpSent = "OTP sent to your email.";

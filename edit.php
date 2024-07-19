@@ -71,7 +71,7 @@ $conn->close();
     <title>Edit User</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-300 flex items-center justify-center min-h-screen">
+<body class="flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 class="text-2xl font-bold mb-6 text-center">Edit User</h2>
         <form action="edit.php?id=<?php echo $id; ?>" method="POST" enctype="multipart/form-data">
