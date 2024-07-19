@@ -59,4 +59,12 @@
 
 
 
+# Thats all! Thank you!
+<p style="background-color:yellow;">If you want to make changes please do! There's a lot to fix here too such as the sweet alerts for update is bugging flickering, sweet alert for logout and logged in<br>
+  design dashboard, design user profile.<br>You can enhance more if you want to!Thank you!</p>
+
+
+
+
+
 
