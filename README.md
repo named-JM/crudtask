@@ -1,6 +1,8 @@
 # Our first Task Warmup for becoming an Intern!
 <p>So we are task by making a CRUD using PHP, XAMPP MySql Database, and Tailwind</p>
 <p><br>Some Libraries we need to use are PHP Mailer, Composer, Data Table, and Sweet Alert 2 From Github</p>
+<p><b>PS:If you want to make changes please do! There's a lot to fix here too such as the sweet alerts for update is bugging flickering, sweet alert for logout and logged in design dashboard, design user profile.
+You can enhance more if you want to!Thank you!</b></p>
 
 <h1>Here's the Register Page</h1>
 
